@@ -22,3 +22,8 @@ body {
 .quiz-card {
     width: 25rem;
 }
+
+.card-hover:hover {
+    cursor: pointer;
+    background-color: aliceblue;
+}
