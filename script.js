@@ -34,16 +34,24 @@ let questions = [
 ];
 
 let currentQuestion = 0
+let correctAnswers = 0
 
 
 function render() {
-
-    
     showQuestion()
 }
 
 function showQuestion() {
+    if (currentQuestion >= questions.length) {
+        document.getElementById('endScreen').style = '';
+        document.getElementById('questionBody').style = 'display: none';
+    } else {
+
+    }
+
     let question = questions[currentQuestion];
+    document.getElementById('correctAnswers').innerHTML = correctAnswers
+    document.getElementById('amountOfQuestions').innerHTML = questions.length
     document.getElementById('questionLenght').innerHTML = questions.length
     document.getElementById('currentQustion').innerHTML = currentQuestion + 1
     document.getElementById('questionText').innerHTML = question['question'];
@@ -51,8 +59,6 @@ function showQuestion() {
     document.getElementById('answer_2').innerHTML = question['answer_2'];
     document.getElementById('answer_3').innerHTML = question['answer_3'];
     document.getElementById('answer_4').innerHTML = question['answer_4'];
-    
-    
 }
 
 function answer(selection) {
@@ -64,23 +70,22 @@ function answer(selection) {
 
     if (selectedQuestionNumber === question['right_answer']) {
         document.getElementById(selection).classList.add('bg-success');
+        correctAnswers++
     } else {
         document.getElementById(idOfRightAnswer).classList.add('bg-success');
         document.getElementById(selection).classList.add('bg-danger');
     }
     document.getElementById('nextButton').disabled = false;
-    
+
 }
 
 
 function nextQuestion() {
-    if (currentQuestion < questions.length - 1) {
+    if (currentQuestion <= questions.length) {
         currentQuestion++
-        showQuestion()
-    } else {
-        alert('no more questions')
-        answer()
     }
+    showQuestion()
+
     document.getElementById('nextButton').disabled = true;
 
     resetAnswerButons()
@@ -99,3 +104,4 @@ function resetAnswerButons() {
     document.getElementById('answer_4').classList.remove('bg-success');
     document.getElementById('answer_4').classList.remove('bg-danger');
 }
+

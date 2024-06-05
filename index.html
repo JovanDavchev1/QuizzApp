@@ -27,27 +27,40 @@
   <div class="container">
     <div class="card quiz-card">
       <img src="./img/back.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
+
+      <div class="card-body" id="endScreen" style="display: none;">
+        <div>
+          QuizzBeendet!</div>
+          <div>
+            <img class="width-100" src="./img/trophy.png" alt="">
+          </div>
+          <div class="end-result">
+            <p id="correctAnswers">2</p> von <p id="amountOfQuestions"></p> Fragen hast du richtig beantworted!
+          </div>
+
+      </div>
+
+      <div class="card-body" id="questionBody">
         <h5 class="card-title">Frage</h5>
         <p class="card-text" id="questionText"></p>
         <div class="card card-hover mb-2" onclick="answer('answer_1')" id="answer_1">
           <div class="card-body">
-            
+
           </div>
         </div>
         <div class="card card-hover mb-2" onclick="answer('answer_2')" id="answer_2">
           <div class="card-body">
-           
+
           </div>
         </div>
         <div class="card card-hover mb-2" onclick="answer('answer_3')" id="answer_3">
           <div class="card-body">
-            
+
           </div>
         </div>
         <div class="card card-hover mb-2" onclick="answer('answer_4')" id="answer_4">
           <div class="card-body">
-            
+
           </div>
         </div>
 
@@ -55,7 +68,8 @@
           <span>
             <b id="currentQustion"></b> von <b id="questionLenght"></b> fragen
           </span>
-          <button type="button" class="btn btn-primary" onclick="nextQuestion()" id="nextButton" disabled>Nechte frage</button>
+          <button type="button" class="btn btn-primary" onclick="nextQuestion()" id="nextButton" disabled>Nechte
+            frage</button>
 
         </div>
 

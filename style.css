@@ -1,12 +1,12 @@
 body {
-    background-color: rgb(254,250,239) !important;
+    background-color: rgb(254, 250, 239) !important;
     margin: 0px;
 }
 
 .container {
-    background-color: rgb(254,250,239) !important;
+    background-color: rgb(254, 250, 239) !important;
     min-height: 100vh;
-   
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,4 +30,14 @@ body {
 
 .card-hover {
     text-align: center;
+}
+
+.width-100 {
+    width: 100%;
+}
+
+.end-result {
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly
 }
