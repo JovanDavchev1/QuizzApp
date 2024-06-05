@@ -37,28 +37,42 @@ let currentQuestion = 0
 let correctAnswers = 0
 
 
+
 function render() {
     showQuestion()
 }
 
 function showQuestion() {
     if (currentQuestion >= questions.length) {
-        document.getElementById('endScreen').style = '';
-        document.getElementById('questionBody').style = 'display: none';
+        if (correctAnswers == 0) {
+            document.getElementById('image').src = './img/looser.jpg'
+            document.getElementById('progressBar').style = `width: 100%`
+        } else { 
+            document.getElementById('endScreen').style = '';
+            document.getElementById('questionBody').style = 'display: none';
+            document.getElementById('image').src = './img/trophy.png'
+            document.getElementById('image').style = 'padding: 32px;'
+            document.getElementById('progressBar').style = `width: 100%`
+        }
     } else {
 
-    }
+        let procent = currentQuestion / questions.length;
+        procent = Math.round(procent * 100);
+        document.getElementById('progressBar').style = `width: ${procent}%`
 
-    let question = questions[currentQuestion];
-    document.getElementById('correctAnswers').innerHTML = correctAnswers
-    document.getElementById('amountOfQuestions').innerHTML = questions.length
-    document.getElementById('questionLenght').innerHTML = questions.length
-    document.getElementById('currentQustion').innerHTML = currentQuestion + 1
-    document.getElementById('questionText').innerHTML = question['question'];
-    document.getElementById('answer_1').innerHTML = question['answer_1'];
-    document.getElementById('answer_2').innerHTML = question['answer_2'];
-    document.getElementById('answer_3').innerHTML = question['answer_3'];
-    document.getElementById('answer_4').innerHTML = question['answer_4'];
+        console.log('show', procent)
+
+        let question = questions[currentQuestion];
+        document.getElementById('correctAnswers').innerHTML = correctAnswers
+        document.getElementById('amountOfQuestions').innerHTML = questions.length
+        document.getElementById('questionLenght').innerHTML = questions.length
+        document.getElementById('currentQustion').innerHTML = currentQuestion + 1
+        document.getElementById('questionText').innerHTML = question['question'];
+        document.getElementById('answer_1').innerHTML = question['answer_1'];
+        document.getElementById('answer_2').innerHTML = question['answer_2'];
+        document.getElementById('answer_3').innerHTML = question['answer_3'];
+        document.getElementById('answer_4').innerHTML = question['answer_4'];
+    }
 }
 
 function answer(selection) {
@@ -84,8 +98,8 @@ function nextQuestion() {
     if (currentQuestion <= questions.length) {
         currentQuestion++
     }
-    showQuestion()
 
+    render()
     document.getElementById('nextButton').disabled = true;
 
     resetAnswerButons()
