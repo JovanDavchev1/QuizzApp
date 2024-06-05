@@ -29,36 +29,37 @@
       <img src="./img/back.jpg" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">Frage</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
-          <div class="card card-hover mb-2">
-            <div class="card-body">
-              This is some text within a card body.
-            </div>
+        <p class="card-text" id="questionText"></p>
+        <div class="card card-hover mb-2" onclick="answer('answer_1')" id="answer_1">
+          <div class="card-body">
+            
           </div>
-          <div class="card card-hover mb-2">
-            <div class="card-body">
-              This is some text within a card body.
-            </div>
+        </div>
+        <div class="card card-hover mb-2" onclick="answer('answer_2')" id="answer_2">
+          <div class="card-body">
+           
           </div>
-          <div class="card card-hover mb-2">
-            <div class="card-body">
-              This is some text within a card body.
-            </div>
+        </div>
+        <div class="card card-hover mb-2" onclick="answer('answer_3')" id="answer_3">
+          <div class="card-body">
+            
           </div>
-          <div class="card card-hover mb-2">
-            <div class="card-body">
-              This is some text within a card body.
-            </div>
+        </div>
+        <div class="card card-hover mb-2" onclick="answer('answer_4')" id="answer_4">
+          <div class="card-body">
+            
           </div>
+        </div>
 
-          <div class="question-footer">
-            <b>1</b> von <b>5</b> fragen
-            <button type="button" class="btn btn-primary">Nechte frage</button>
+        <div class="question-footer">
+          <span>
+            <b id="currentQustion"></b> von <b id="questionLenght"></b> fragen
+          </span>
+          <button type="button" class="btn btn-primary" onclick="nextQuestion()" id="nextButton" disabled>Nechte frage</button>
 
-          </div>
-       
-          
+        </div>
+
+
       </div>
     </div>
   </div>

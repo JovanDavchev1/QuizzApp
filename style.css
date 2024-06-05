@@ -27,3 +27,7 @@ body {
     cursor: pointer;
     background-color: aliceblue;
 }
+
+.card-hover {
+    text-align: center;
+}

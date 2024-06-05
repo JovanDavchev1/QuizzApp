@@ -1,4 +1,4 @@
-let content = [
+let questions = [
     {
         "question": "How many time zones are there in Russia?",
         "answer_1": "9",
@@ -30,17 +30,72 @@ let content = [
         "answer_3": "Ankara",
         "answer_4": "Antalya",
         "right_answer": 2
-    },
-    {
-        "question": "Which language has the most words (according to dictionary entries)?",
-        "answer_1": "English",
-        "answer_2": "German",
-        "answer_3": "Chinese",
-        "answer_4": "Russian",
-        "right_answer": 1
     }
 ];
 
+let currentQuestion = 0
+
+
 function render() {
 
+    
+    showQuestion()
+}
+
+function showQuestion() {
+    let question = questions[currentQuestion];
+    document.getElementById('questionLenght').innerHTML = questions.length
+    document.getElementById('currentQustion').innerHTML = currentQuestion + 1
+    document.getElementById('questionText').innerHTML = question['question'];
+    document.getElementById('answer_1').innerHTML = question['answer_1'];
+    document.getElementById('answer_2').innerHTML = question['answer_2'];
+    document.getElementById('answer_3').innerHTML = question['answer_3'];
+    document.getElementById('answer_4').innerHTML = question['answer_4'];
+    
+    
+}
+
+function answer(selection) {
+
+    let question = questions[currentQuestion];
+    let selectedQuestionNumber = +selection.slice(-1);
+
+    let idOfRightAnswer = `answer_${question['right_answer']}`
+
+    if (selectedQuestionNumber === question['right_answer']) {
+        document.getElementById(selection).classList.add('bg-success');
+    } else {
+        document.getElementById(idOfRightAnswer).classList.add('bg-success');
+        document.getElementById(selection).classList.add('bg-danger');
+    }
+    document.getElementById('nextButton').disabled = false;
+    
+}
+
+
+function nextQuestion() {
+    if (currentQuestion < questions.length - 1) {
+        currentQuestion++
+        showQuestion()
+    } else {
+        alert('no more questions')
+        answer()
+    }
+    document.getElementById('nextButton').disabled = true;
+
+    resetAnswerButons()
+
+}
+function resetAnswerButons() {
+    document.getElementById('answer_1').classList.remove('bg-success');
+    document.getElementById('answer_1').classList.remove('bg-danger');
+
+    document.getElementById('answer_2').classList.remove('bg-success');
+    document.getElementById('answer_2').classList.remove('bg-danger');
+
+    document.getElementById('answer_3').classList.remove('bg-success');
+    document.getElementById('answer_3').classList.remove('bg-danger');
+
+    document.getElementById('answer_4').classList.remove('bg-success');
+    document.getElementById('answer_4').classList.remove('bg-danger');
 }
