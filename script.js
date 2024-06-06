@@ -35,8 +35,8 @@ let questions = [
 
 let currentQuestion = 0
 let correctAnswers = 0
-let AUDIO_SUCCES = new Audio('sound\right.mp3')
-let AUDIO_FAIL = new Audio('sound\wrong.mp3')
+let AUDIO_SUCCES = new Audio('sound/right.mp3')
+let AUDIO_FAIL = new Audio('sound/wrong.mp3')
 
 
 
@@ -45,46 +45,36 @@ function render() {
 }
 
 function showQuestion() {
-    if (currentQuestion >= questions.length) {
+    if (gameIsOver()) {
         if (correctAnswers == 0) {
             document.getElementById('image').src = './img/looser.jpg'
             document.getElementById('progressBar').style = `width: 100%`
         } else {
-            document.getElementById('endScreen').style = '';
-            document.getElementById('questionBody').style = 'display: none';
-            document.getElementById('image').src = './img/trophy.png'
-            document.getElementById('image').style = 'padding: 32px;'
-            document.getElementById('progressBar').style = `width: 100%`
+            showEndScreen()
         }
     } else {
 
         let procent = currentQuestion / questions.length;
         procent = Math.round(procent * 100);
         document.getElementById('progressBar').style = `width: ${procent}%`
-
         console.log('show', procent)
+        updateContent()
 
-        let question = questions[currentQuestion];
-        document.getElementById('correctAnswers').innerHTML = correctAnswers
-        document.getElementById('amountOfQuestions').innerHTML = questions.length
-        document.getElementById('questionLenght').innerHTML = questions.length
-        document.getElementById('currentQustion').innerHTML = currentQuestion + 1
-        document.getElementById('questionText').innerHTML = question['question'];
-        document.getElementById('answer_1').innerHTML = question['answer_1'];
-        document.getElementById('answer_2').innerHTML = question['answer_2'];
-        document.getElementById('answer_3').innerHTML = question['answer_3'];
-        document.getElementById('answer_4').innerHTML = question['answer_4'];
+
     }
+}
+
+function gameIsOver(){
+    return currentQuestion >= questions.length
 }
 
 function answer(selection) {
 
     let question = questions[currentQuestion];
     let selectedQuestionNumber = +selection.slice(-1);
-
     let idOfRightAnswer = `answer_${question['right_answer']}`
 
-    if (selectedQuestionNumber === question['right_answer']) {
+    if (rightAnswerSelected(selectedQuestionNumber, question)) {
         document.getElementById(selection).classList.add('bg-success');
         AUDIO_SUCCES.play()
         correctAnswers++
@@ -97,6 +87,10 @@ function answer(selection) {
 
 }
 
+function rightAnswerSelected(selectedQuestionNumber, question) {
+    return selectedQuestionNumber === question['right_answer']
+}
+
 
 function nextQuestion() {
     if (currentQuestion <= questions.length) {
@@ -106,10 +100,10 @@ function nextQuestion() {
     render()
     document.getElementById('nextButton').disabled = true;
 
-    resetAnswerButons()
+    resetAnswerButtons()
 
 }
-function resetAnswerButons() {
+function resetAnswerButtons() {
     document.getElementById('answer_1').classList.remove('bg-success');
     document.getElementById('answer_1').classList.remove('bg-danger');
 
@@ -130,4 +124,25 @@ function restartGame() {
     currentQuestion = 0;
     correctAnswers = 0;
     render()
+}
+
+function showEndScreen() {
+    document.getElementById('endScreen').style = '';
+    document.getElementById('questionBody').style = 'display: none';
+    document.getElementById('image').src = './img/trophy.png'
+    document.getElementById('image').style = 'padding: 32px;'
+    document.getElementById('progressBar').style = `width: 100%`
+}
+
+function updateContent() {
+    let question = questions[currentQuestion];
+    document.getElementById('correctAnswers').innerHTML = correctAnswers
+    document.getElementById('amountOfQuestions').innerHTML = questions.length
+    document.getElementById('questionLenght').innerHTML = questions.length
+    document.getElementById('currentQustion').innerHTML = currentQuestion + 1
+    document.getElementById('questionText').innerHTML = question['question'];
+    document.getElementById('answer_1').innerHTML = question['answer_1'];
+    document.getElementById('answer_2').innerHTML = question['answer_2'];
+    document.getElementById('answer_3').innerHTML = question['answer_3'];
+    document.getElementById('answer_4').innerHTML = question['answer_4'];
 }
