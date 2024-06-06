@@ -35,6 +35,8 @@ let questions = [
 
 let currentQuestion = 0
 let correctAnswers = 0
+let AUDIO_SUCCES = new Audio('sound\right.mp3')
+let AUDIO_FAIL = new Audio('sound\wrong.mp3')
 
 
 
@@ -84,10 +86,12 @@ function answer(selection) {
 
     if (selectedQuestionNumber === question['right_answer']) {
         document.getElementById(selection).classList.add('bg-success');
+        AUDIO_SUCCES.play()
         correctAnswers++
     } else {
         document.getElementById(idOfRightAnswer).classList.add('bg-success');
         document.getElementById(selection).classList.add('bg-danger');
+        AUDIO_FAIL.play()
     }
     document.getElementById('nextButton').disabled = false;
 
