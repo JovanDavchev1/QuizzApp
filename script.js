@@ -49,6 +49,8 @@ function showQuestion() {
         if (correctAnswers == 0) {
             document.getElementById('image').src = './img/looser.jpg'
             document.getElementById('progressBar').style = `width: 100%`
+            document.getElementById('endScreen').style = '';
+            document.getElementById('questionBody').style = 'display: none';
         } else {
             showEndScreen()
         }
