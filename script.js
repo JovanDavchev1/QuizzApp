@@ -47,7 +47,7 @@ function showQuestion() {
         if (correctAnswers == 0) {
             document.getElementById('image').src = './img/looser.jpg'
             document.getElementById('progressBar').style = `width: 100%`
-        } else { 
+        } else {
             document.getElementById('endScreen').style = '';
             document.getElementById('questionBody').style = 'display: none';
             document.getElementById('image').src = './img/trophy.png'
@@ -119,3 +119,11 @@ function resetAnswerButons() {
     document.getElementById('answer_4').classList.remove('bg-danger');
 }
 
+function restartGame() {
+    document.getElementById('image').src = './img/back.jpg';
+    document.getElementById('endScreen').style = 'display: none';
+    document.getElementById('questionBody').style = '';
+    currentQuestion = 0;
+    correctAnswers = 0;
+    render()
+}
